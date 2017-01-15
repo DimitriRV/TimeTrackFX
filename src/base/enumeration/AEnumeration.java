@@ -1,4 +1,4 @@
-package enumeration;
+package base.enumeration;
 
 
 public abstract class AEnumeration {

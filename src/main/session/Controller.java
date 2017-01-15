@@ -1,17 +1,17 @@
 package main.session;
 
-import enumeration.Projects;
-import enumeration.Tickets;
+import base.enumeration.Projects;
+import base.enumeration.Tickets;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 
 public class Controller {
 	
 	@FXML
-	private ComboBox<enumeration.Projects.Model> projectCombo;
+	private ComboBox<base.enumeration.Projects.Model> projectCombo;
 	
 	@FXML
-	private ComboBox<enumeration.Tickets.Model> ticketCombo;
+	private ComboBox<base.enumeration.Tickets.Model> ticketCombo;
 	
 //	@FXML
 //	private TextArea commitMessage; 
@@ -30,7 +30,7 @@ public class Controller {
 		
 	}
 	
-	public void handleProjectSelection(enumeration.Projects.Model newV)
+	public void handleProjectSelection(base.enumeration.Projects.Model newV)
 	{
 		ticketCombo.getItems().remove(0, ticketCombo.getItems().size());
 		

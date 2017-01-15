@@ -1,4 +1,4 @@
-package enumeration;
+package base.enumeration;
 
 
 import javafx.collections.FXCollections;
