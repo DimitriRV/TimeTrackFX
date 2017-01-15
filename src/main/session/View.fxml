@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.session.Controller">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -70,8 +70,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="projectCombo" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="ticketCombo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Projekt :">
                      <padding>
                         <Insets left="5.0" />
@@ -84,12 +84,12 @@
                   </Label>
                </children>
             </GridPane>
-            <Label layoutY="69.0" text="Bemerkung :">
+            <Label fx:id="commitMessage" layoutY="69.0" text="Bemerkung :">
                <padding>
                   <Insets bottom="5.0" left="5.0" />
                </padding>
             </Label>
-            <TextArea layoutY="85.0" prefHeight="310.0" prefWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="90.0" />
+            <TextArea fx:id="commitMessage" layoutY="85.0" prefHeight="310.0" prefWidth="500.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="90.0" />
          </children>
       </AnchorPane>
    </center>
