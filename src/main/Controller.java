@@ -63,9 +63,14 @@ public class Controller extends Application {
 			Tab tabOverview = createTab("Übersicht");
 			tabOverview.setContent(overviewPane);
 			tabPane.getTabs().add(tabOverview);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		main.session.Controller sessionC =  sessionLoader.getController();
+		main.session.overview.Controller overviewC = overviewLoader.getController();
+		sessionC.setOverviewController(overviewC);
+		
 		myPane.setCenter(tabPane);
 	}
 	

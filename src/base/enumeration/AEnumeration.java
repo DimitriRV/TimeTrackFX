@@ -1,21 +1,25 @@
 package base.enumeration;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public abstract class AEnumeration {
 	
 	protected class IntegerStringModel {
-		private Integer id;
-		private String displayValue;
+		private IntegerProperty id;
+		private StringProperty displayValue;
 		
-		public IntegerStringModel(Integer id, String displayValue) 
+		public IntegerStringModel(int id, String displayValue) 
 		{
-			this.id = id;
-			this.displayValue = displayValue;
+			this.id = new SimpleIntegerProperty(id);
+			this.displayValue = new SimpleStringProperty(displayValue);
 		}
 		
 		@Override
 		public String toString() {
-			return displayValue;
+			return displayValue.get();
 		}
 		
 		@Override
@@ -25,24 +29,33 @@ public abstract class AEnumeration {
 			if(obj == null || getClass() != obj.getClass()) return false;
 			
 			IntegerStringModel model = (IntegerStringModel) obj; 
-			
-			return displayValue != null && displayValue.equals(model.displayValue) || id != null && id.equals(model.id);
+			return displayValue != null && displayValue.get().equals(model.displayValue.get()) || getId() != null && getId().equals(model.getId());
 		}
 		
 		
 		@Override
 		public int hashCode() {
-			int result = id != null ? id.hashCode() : 0;
+			int result = id != null ? getId().hashCode() : 0;
 			result = 31 * result + (displayValue != null ? displayValue.hashCode() : 0);
 			return result;
 		}
-
-		public Integer getId() {
+		
+		public IntegerProperty idProperty()
+		{
 			return id;
 		}
+		
+		public Integer getId() {
+			return id.get();
+		}
 
-		public String getDisplayValue() {
+		public StringProperty displayValueProperty ()
+		{
 			return displayValue;
+		}
+		
+		public String getDisplayValue() {
+			return displayValue.get();
 		}
 	}
 	

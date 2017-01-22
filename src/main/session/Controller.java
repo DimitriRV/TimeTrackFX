@@ -13,9 +13,9 @@ import javafx.scene.control.ToggleGroup;
 
 public class Controller {
 	
-	
 	private ToggleGroup startStopGroup;
 	private Model session;
+	private main.session.overview.Controller overview;
 	
 	
 	@FXML
@@ -23,6 +23,15 @@ public class Controller {
 	
 	@FXML
 	private ComboBox<base.enumeration.Tickets.Model> ticketCombo;
+	
+	@FXML
+	private ToggleButton startButton;
+	
+	@FXML
+	private ToggleButton stopButton;
+	
+	static public String startButtonValue = "start";
+	static public String stopButtonValue = "stop";
 	
 	
 //	@FXML
@@ -40,27 +49,54 @@ public class Controller {
 		ticketCombo.getItems().setAll(Tickets.getInstance().getData(null));
 		projectCombo.valueProperty().addListener((observable, oldV, newV) -> handleProjectSelection(newV));
 		
-		startStopGroup = new ToggleGroup();
+		startStopGroup = new ToggleGroup();		
 		startStopGroup.selectedToggleProperty().addListener((observable,oldToggle,newToggle) -> handleStartStop(newToggle));
+		
+		stopButton.setToggleGroup(startStopGroup);
+		startButton.setToggleGroup(startStopGroup);
+		
+		stopButton.setSelected(true);
+		startButton.setUserData(Controller.startButtonValue);
+		stopButton.setUserData(Controller.stopButtonValue);
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @param newToggle
+	 */
 	public void handleStartStop(Toggle newToggle)
 	{
-		createNewSession();
+		if(newToggle != null && newToggle.getUserData() == Controller.startButtonValue)
+		{
+			createNewSession();
+			return;
+		}
+		
+		saveSession();
 	}
 	
+	/**
+	 * Creates some Session
+	 */
 	private void createNewSession()
 	{
-		session = new Model(projectCombo.getSelectionModel().getSelectedItem().getId(), ticketCombo.getSelectionModel().getSelectedItem().getId(), "");
+		session = new Model(projectCombo.getSelectionModel().getSelectedItem(), ticketCombo.getSelectionModel().getSelectedItem(), "");
 		session.setStartDate(LocalDateTime.now());
 	}
 	
+	/**
+	 * save some Session Data
+	 */
 	private void saveSession()
 	{
+		if(session == null)
+		{
+			return;
+		}
 //		session.setBemerkung(bemerkung);
 		session.setEndDate(LocalDateTime.now());
+		overview.addNewSession(session);
 	}
 	
 	
@@ -72,5 +108,10 @@ public class Controller {
 		{
 			ticketCombo.getItems().setAll(Tickets.getInstance().getData(newV.getId()));
 		}
+	}
+	
+	public void setOverviewController(main.session.overview.Controller overview)
+	{
+		this.overview = overview;
 	}
 }

@@ -1,43 +1,44 @@
 package main.session;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import javafx.beans.property.IntegerProperty;
+import base.enumeration.Projects;
+import base.enumeration.Tickets;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Model {
-	private IntegerProperty projectId;
-	private IntegerProperty ticketId;
+	private ObjectProperty<Projects.Model> project;
+	private ObjectProperty<Tickets.Model> ticket;
 	private StringProperty bemerkung;
 	private ObjectProperty<LocalDateTime> startDate;
 	private ObjectProperty<LocalDateTime> endDate;
 	
 	/**
-	 * @param projectId
-	 * @param ticketId
+	 * @param project
+	 * @param ticket
 	 * @param bemerkung
 	 */
-	public Model(int projectId, int ticketId, String bemerkung) {
+	public Model(Projects.Model project, Tickets.Model ticket, String bemerkung) {
 		super();
-		this.projectId = new SimpleIntegerProperty(projectId);
-		this.ticketId = new SimpleIntegerProperty(ticketId);
+		this.project = new SimpleObjectProperty<Projects.Model>(project);
+		this.ticket = new SimpleObjectProperty<Tickets.Model>(ticket);
 		this.bemerkung = new SimpleStringProperty(bemerkung);
 		this.startDate = new SimpleObjectProperty<LocalDateTime>();
 		this.endDate = new SimpleObjectProperty<LocalDateTime>();
 	}
 	
 	//Property getters
-	public IntegerProperty projectIdProperty() {
-		return projectId;
+	public ObjectProperty<Projects.Model> projectProperty() {
+		return project;
 	}
 	
-	public IntegerProperty ticketIdProperty() {
-		return ticketId;
+//	public 
+	
+	public ObjectProperty<Tickets.Model> ticketProperty() {
+		return ticket;
 	}
 	
 	public StringProperty bemerkungProperty() {
@@ -56,11 +57,23 @@ public class Model {
 	
 	public int getProjectId() 
 	{
-		return projectId.get();
+		return project.get().getId();
 	}
+	
+	public String getProjectDisplayValue() 
+	{
+		return project.get().getDisplayValue();
+	}
+	
 	public int getTicketId() {
-		return ticketId.get();
+		return ticket.get().getId();
 	}
+	
+	public String getTicketDisplayValue()
+	{
+		return ticket.get().getDisplayValue();
+	}
+	
 	public String getBemerkung() {
 		return bemerkung.get();
 	}
@@ -75,11 +88,11 @@ public class Model {
 	public void setEndDate(LocalDateTime endDate) {
 		this.endDate.set(endDate);
 	}
-	public void setProjectId(int projectId) {
-		this.projectId.set(projectId);
+	public void setProject(Projects.Model project) {
+		this.project.set(project);
 	}
-	public void setTicketId(int ticketId) {
-		this.ticketId.set(ticketId);
+	public void setTicket(Tickets.Model ticket) {
+		this.ticket.set(ticket);
 	}
 	public void setBemerkung(String bemerkung) {
 		this.bemerkung.set(bemerkung);
