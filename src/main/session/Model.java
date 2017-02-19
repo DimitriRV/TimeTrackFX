@@ -1,5 +1,6 @@
 package main.session;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import base.enumeration.Projects;
@@ -15,6 +16,7 @@ public class Model {
 	private StringProperty bemerkung;
 	private ObjectProperty<LocalDateTime> startDate;
 	private ObjectProperty<LocalDateTime> endDate;
+	private ObjectProperty<Duration> timeDuration;
 	
 	/**
 	 * @param project
@@ -28,6 +30,7 @@ public class Model {
 		this.bemerkung = new SimpleStringProperty(bemerkung);
 		this.startDate = new SimpleObjectProperty<LocalDateTime>();
 		this.endDate = new SimpleObjectProperty<LocalDateTime>();
+		this.timeDuration = new SimpleObjectProperty<Duration>();
 	}
 	
 	//Property getters
@@ -51,6 +54,11 @@ public class Model {
 	
 	public ObjectProperty<LocalDateTime> endDateProperty() {
 		return endDate;
+	}
+	
+	public ObjectProperty<Duration> timeDuration()
+	{
+		return timeDuration;
 	}
 	
 	//getters
@@ -83,6 +91,20 @@ public class Model {
 	public LocalDateTime getEndDate() {
 		return endDate.get();
 	}
+	
+//	public Duration getTimePeriod()
+//	{
+//		if(endDate.get() == null || startDate.get() == null)
+//		{
+//			return null;
+//		}
+//		
+//		
+//		Duration d = Duration.
+//		
+//		return null;
+//	}
+	
 	
 	// setters
 	public void setEndDate(LocalDateTime endDate) {
