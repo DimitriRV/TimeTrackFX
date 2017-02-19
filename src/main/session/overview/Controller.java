@@ -42,7 +42,7 @@ public class Controller {
 		startColumn.setCellValueFactory(cellData -> cellData.getValue().startDateProperty());
 		startColumn.setCellFactory(tableColumn -> new TableCellDateTime<Model>());
 		endColumn.setCellValueFactory(cellData -> cellData.getValue().endDateProperty());
-		endColumn.setCellFactory(tableColumn -> new TableCellDateTime<Model>("d-MM-Y H+m+s"));
+		endColumn.setCellFactory(tableColumn -> new TableCellDateTime<Model>());
 		
 		sessionsTable.setItems(sessions);
 	}

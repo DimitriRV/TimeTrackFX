@@ -1,6 +1,5 @@
 package main.session;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import base.enumeration.Projects;
@@ -83,6 +82,7 @@ public class Controller {
 	{
 		session = new Model(projectCombo.getSelectionModel().getSelectedItem(), ticketCombo.getSelectionModel().getSelectedItem(), "");
 		session.setStartDate(LocalDateTime.now());
+		overview.addNewSession(session);
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class Controller {
 		}
 //		session.setBemerkung(bemerkung);
 		session.setEndDate(LocalDateTime.now());
-		overview.addNewSession(session);
+		
 	}
 	
 	

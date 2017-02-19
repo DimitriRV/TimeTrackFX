@@ -20,7 +20,7 @@ public class TableCellDateTime<S> extends javafx.scene.control.TableCell<S,Local
 	protected void updateItem(LocalDateTime item, boolean empty) 
 	{
 		super.updateItem(item, empty);
-		if (empty)
+		if (empty || item == null)
 		{
 			setText(null);
 		}
